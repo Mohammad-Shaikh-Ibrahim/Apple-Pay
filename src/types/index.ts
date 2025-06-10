@@ -19,17 +19,17 @@ export interface MiniCardProps {
   miniCardPrice?: string;
 }
 export interface StyleMode {
-  bg: string;
-  text: string;
-  subtitle: string;
-  iconColor: string;
-  cardIconBg: string;
+  bg?: string;
+  text?: string;
+  display?:string;
+  subtitle?: string;
+  iconColor?: string;
+  cardIconBg?: string;
 }
 export interface PayCardProps {
-  cardMode: string;
+  cardMode?: string;
+  cardImg?: string | React.ReactNode;
+  cardText?: string;
+  cardLine?: string;
   children?: string | React.ReactNode;
-}
-export interface PayCardMode {
-  bg: string;
-  iconColor: string;
 }

@@ -1,11 +1,11 @@
-import type { PayCardProps, PayCardMode } from "../types/index";
+import type { PayCardProps, StyleMode } from "../types/index";
 import { Box, Stack, Typography, useTheme } from "@mui/material";
 import AppleIcon from "@mui/icons-material/Apple";
 
 const PayCard: React.FC<PayCardProps> = ({ cardMode, children }) => {
   const theme = useTheme();
   const mode = cardMode || theme.palette.mode;
-  const styles: PayCardMode =
+  const styles: StyleMode =
     mode === "dark"
       ? {
           bg: theme.palette.primary.dark,
