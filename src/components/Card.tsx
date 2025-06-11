@@ -1,38 +1,30 @@
 import { Box, Stack, Typography } from "@mui/material";
 import type { CardProps } from "../types/index";
 
-const Card: React.FC<CardProps> = ({ cardTitle, items }) => {
+const Card: React.FC<CardProps> = ({
+  cardTitle,
+  items,
+  cardcontentDirection,
+  cardDescriptionDirection,
+  miniCardDirection,
+}) => {
+  const isRow = cardcontentDirection === "row";
+  const isReverse = cardDescriptionDirection === "column";
+
   return (
-    <Stack direction={"column"}>
+    <Stack direction="column">
       <Typography variant="caption" fontWeight={700} fontSize={18} my={3}>
         {cardTitle}
       </Typography>
 
-      <Stack direction="row" spacing={2}>
-        <Box
-          borderRadius={2}
-          border="dashed 2px"
-          borderColor={(theme) => theme.palette.primary.dark}
-          padding={2}
-          display="flex"
-          flexDirection="column"
-          flex={1}
+      {/* Main Flex Container */}
+      <Stack direction={isRow ? "row" : "column"} >
+        {/* Captions */}
+        <Stack
+          direction={cardDescriptionDirection === "row" ? "row" : "column"}
+          sx={{ order: isReverse ? 2 : 1 }}
+          m={2}
         >
-          {items.map((item, index) => (
-            <Box
-              key={index}
-              display="flex"
-              alignItems="center"
-              sx={{
-                marginBottom: index < items.length - 1 ? 1 : 0,
-                width: "100%",
-              }}
-            >
-              <Box sx={{ flexGrow: 1 }}>{item.miniCard}</Box>
-            </Box>
-          ))}
-        </Box>
-        <Stack direction="column">
           {items.map((item, index) => (
             <Box
               key={index}
@@ -56,6 +48,34 @@ const Card: React.FC<CardProps> = ({ cardTitle, items }) => {
             </Box>
           ))}
         </Stack>
+
+        {/* Mini Cards */}
+        <Box
+          sx={{ order: isReverse ? 1 : 2 }}
+          borderRadius={2}
+          border="dashed 2px"
+          borderColor={(theme) => theme.palette.primary.dark}
+          padding={2}
+          display="flex"
+          flexDirection="column"
+          flex={1}
+        >
+         <Stack direction={miniCardDirection} spacing={3}>
+           {items.map((item, index) => (
+            <Box
+              key={index}
+              display="flex"
+              alignItems="center"
+              sx={{
+                marginBottom: index < items.length - 1 ? 1 : 0,
+                width: "100%",
+              }}
+            >
+              <Box sx={{ flexGrow: 1 }}>{item.miniCard}</Box>
+            </Box>
+          ))}
+         </Stack>
+        </Box>
       </Stack>
     </Stack>
   );

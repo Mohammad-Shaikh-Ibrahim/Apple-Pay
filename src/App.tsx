@@ -1,15 +1,17 @@
 import "./App.css";
 import Section from "./components/Section";
 import Header from "./components/Header";
-import Cards from "./components/Cards";
+import AtomsCards from "./components/AtomCards";
+import TemplatesCards from "./components/TemplatesCards";
 
 function App() {
   return (
     <>
       <Header />
       <Section name={"Atoms"} />
-      <Cards />
+      <AtomsCards />
       <Section name={"Templates"} />
+      <TemplatesCards/>
     </>
   );
 }

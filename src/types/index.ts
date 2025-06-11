@@ -6,8 +6,16 @@ export interface CardItem {
   caption: string;
 }
 export interface CardProps {
-  cardTitle: string;
+  cardTitle?: string;
+  cardDescriptionDirection?:string | undefined;
+  miniCardDirection?: "row" |"column"
+  cardcontentDirection?:string;
+  children?: string | React.ReactNode;
   items: CardItem[];
+}
+export interface CardsProps {
+  cardTitle?: string;
+  children?: string | React.ReactNode;
 }
 export interface MiniCardProps {
   miniCardTitle?: string;
